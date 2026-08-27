@@ -5,11 +5,4 @@ requests
 beautifulsoup4
 joblib
 selenium
-webdriver-managerstreamlit
-scikit-learn
-pandas
-requests
-beautifulsoup4
-joblib
-selenium
 webdriver-manager
