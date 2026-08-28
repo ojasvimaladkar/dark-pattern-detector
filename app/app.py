@@ -257,9 +257,7 @@ with tab1:
                 "Scraping page..."
             ):
 
-                texts = scrape_with_selenium(url)(
-                    url
-                )
+                texts = scrape_with_selenium(url)
 
             if not texts:
 
