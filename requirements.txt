@@ -1,7 +1,7 @@
 streamlit
-selenium
 scikit-learn
 pandas
-requests
-beautifulsoup4
+numpy
 joblib
+beautifulsoup4
+selenium
