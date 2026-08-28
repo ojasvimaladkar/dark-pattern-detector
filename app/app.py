@@ -1,5 +1,6 @@
 import streamlit as st
 import joblib
+from selenium_scraper import scrape_with_selenium
 import re
 from bs4 import BeautifulSoup
 
@@ -21,11 +22,6 @@ category_model = joblib.load(
 category_vectorizer = joblib.load(
     'models/category_tfidf_vectorizer.pkl'
 )
-
-
-# ============================================================
-# TEXT CLEANING
-# ============================================================
 
 def clean_text(text):
 
@@ -59,11 +55,10 @@ def clean_text(text):
 def scrape_texts(url):
 
     from selenium import webdriver
-    from selenium.webdriver.chrome.service import Service
+    
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support.ui import WebDriverWait
     from selenium.webdriver.support import expected_conditions as EC
-    from webdriver_manager.chrome import ChromeDriverManager
     import time
 
     options = webdriver.ChromeOptions()
@@ -83,11 +78,10 @@ def scrape_texts(url):
 
     try:
 
+        options.binary_location = "/usr/bin/chromium"
+
         driver = webdriver.Chrome(
-            service=Service(
-                ChromeDriverManager().install()
-            ),
-            options=options
+        options=options
         )
 
         driver.get(url)
@@ -211,7 +205,7 @@ def predict(texts):
 
 st.set_page_config(
     page_title="Dark Pattern Detector",
-    page_icon="🕵️",
+    page_icon="😶‍🌫️",
     layout="wide"
 )
 
@@ -263,7 +257,7 @@ with tab1:
                 "Scraping page..."
             ):
 
-                texts = scrape_texts(
+                texts = scrape_with_selenium(url)(
                     url
                 )
 
